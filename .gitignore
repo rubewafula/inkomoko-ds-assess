@@ -1,0 +1,19 @@
+# Ignore these files
+venv
+*pyc
+venv/*
+
+# Compiled Python bytecode
+*.py[cod]
+
+# Log files
+*.log
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
+*.sw?
