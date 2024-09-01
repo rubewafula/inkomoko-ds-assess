@@ -6,7 +6,8 @@ import logging
 
 from DataAssignment import (
     ExtractAndSaveData, 
-    AcceptAndSaveData
+    AcceptAndSaveData,
+    RegisterWebHook
 )
 
 app = Flask(__name__)
@@ -14,6 +15,7 @@ api = Api(app)
 
 api.add_resource(ExtractAndSaveData, '/vx/extract-data')
 api.add_resource(AcceptAndSaveData, '/vx/accept/data')
+api.add_resource(RegisterWebHook, '/vx/register/webhook')
 
 log_formatter = logging.Formatter(
     "%(asctime)s %(levelname)-8s %(name)-5s %(filename)s:%(lineno)d:%("

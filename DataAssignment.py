@@ -5,6 +5,7 @@ from flask import (
 )
 
 import requests
+import json
 from ConfigLoader import Config
 import ijson
 from Db import DatabaseManager
@@ -74,3 +75,13 @@ class AcceptAndSaveData(Resource):
         result = self.process_and_save_post_data(data)
 
         return {"status":200, "message":"Nothing get", "data":data}
+
+class RegisterWebHook(Resoure):
+    def get(self):
+        self.configs = Config()
+        url  = self.configs.get_config('WEBHOOK', 'url')
+        callback = self.configs.get_config('WEBHOOK', 'callback')
+        payload = json.dumps({"url": callback})
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(url, headers=headers, data=payload)
+        return response.json()
