@@ -18,7 +18,6 @@ class ExtractAndSaveData(Resource):
         return response.raw  
 
     def process_item_data(self, item):
-        print(f"Processing data row: {item}")
         db_manager = DatabaseManager(self.configs)
         db_manager.save_records(item)
 
@@ -62,9 +61,10 @@ class AcceptAndSaveData(Resource):
         return request.get_json(force=True)
 
     def process_and_save_post_data(self, data):
-        pass
+        db_manager = DatabaseManager(self.configs)
+        db_manager.save_records(data)
 
-    def poat(self):
+    def post(self):
         data =  self.get_data()
         self.configs = Config()
         url  = self.configs.get_config('DATAEXTRACTION', 'url')
@@ -73,4 +73,4 @@ class AcceptAndSaveData(Resource):
 
         result = self.process_and_save_post_data(data)
 
-        return result
+        return {"status":200, "message":"Nothing get", "data":data}
