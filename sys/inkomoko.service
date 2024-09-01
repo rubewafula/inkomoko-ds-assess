@@ -1,0 +1,14 @@
+[Unit]
+Description=uWSGI instance to serve the Inkomoko Assessment Assignment
+After=network.target
+
+[Service]
+User=www-data
+Group=debian
+WorkingDirectory=/apps/python/inkomoko
+Environment="PATH="/apps/python/inkomoko/venv/bin"
+ExecStart=/apps/python/inkomoko/venv/bin/uwsgi --virtualenv /apps/python/inkomoko/venv --ini uwsgi.ini
+
+[Install]
+WantedBy=multi-user.target
+
