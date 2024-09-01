@@ -3,7 +3,7 @@ aniso8601==9.0.1
 certifi==2024.8.30
 charset-normalizer==2.0.12
 click==8.0.4
-dataclasses==0.8
+dataclasses
 Flask==2.0.3
 Flask-RESTful==0.3.10
 Flask-SQLAlchemy==2.5.1
