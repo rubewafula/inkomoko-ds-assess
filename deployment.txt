@@ -53,4 +53,10 @@ System daemon
   systemctl enable inkmoko.service
   systemctl start inkomoko.serivce
 
+*Debug Deployment*
+ - For the purpose of development the project may be run by manually running the main.py file once venv is setup and activate
+ 
+ python3 manage.py
+
+
 
