@@ -1,0 +1,56 @@
+How to deploy this application
+
+Dependancies
+ - Nginx
+ - Mysql
+ - Python 3.9
+
+ Make sure you have the able installed 
+
+ Mysql - Required for database connection
+  - The connection params should be updated in configs.ini file
+  - Once connect you can use alembic to run migrations or simply restore dump file in sql folder with command like one below
+  - if you need to use alembic for database migrations to need to edit config in alembic.ini confile file in root dir
+
+  With mysql insalled run command below to create database schema from available sql dump
+  mysql -uusername -ppasswordtomysql -hhost databasename < sql.schema.sql
+
+Nginx -  Web server application
+ - This application is bandled with sys/nginx.conf that should be copied ti nginx conf dir.
+   Remember to change project dirs in the conf file before copying it over
+ - The specified port in the nginx conf file shold be available for deplyment, what is used in the file is port 1617
+
+   #command
+   cp sys/nginx.conf /etc/nginx/conf.d/
+
+Python
+  Install python in virtual env in root dir
+
+  python3.9 -m venv venv
+
+  #Install requirements via pip
+
+  source ./venv/bin/activate
+  pip install -r requirements.txt
+
+  #Notes - Ensure mysql client is installed before running the pip install
+  apt-get install mysql-client on ubuntu** for instance
+
+Wsgi Container
+   Twig the configs in uwsgi.ini file to provide especially logging via syslog pipe and available port for system stats
+   This file already has basic config params for uwsgi cotainer to run
+
+
+System daemon
+  Sevice file is included as sys/inkomoko.service
+  Ensure the application paths are correcr and copy it to the system folder
+
+  cp sys/inkmoko.service /etc/systemd/system/inkmoko.service
+
+  Then reload system daemon
+
+  systemctl daemon-reload
+  systemctl enable inkmoko.service
+  systemctl start inkomoko.serivce
+
+
