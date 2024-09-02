@@ -12,15 +12,22 @@ I have registered the below endpoints
 Structure
    .configs.ini - Configuration file, database, other configs
    main.py - Entry point, create the Fask app and acts as the entry point
+
    DataAssignment.py -  Has endpoints to handle the actual post for all API 
        endpoints
+
    Models.py - Models mapped to Database tables using sqlalchemny ORM implementations
+
    Db.py - Handles database logic for creation of specific data creation login
+
    inkomoko.wsi - Register wasgi application of production deployment via uwsgi container
+   
    uwsgi.ini -  Configurations for uwsgi deployment
+
    Migrations Folder - Has database migrations that can be managed via alembic
      - Migrations can be deployed by including alembic config file alembic.ini in route dir
      - Managing database connection and deploying the migrations
+
    sql - Folder has actual dump of raw sql database
       - This assigment has been done with mysql database
 
